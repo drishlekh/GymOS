@@ -48,6 +48,15 @@ def create_set(
     }
 
 
-@app.get("/sets")
+class WorkoutSetResponse(BaseModel):
+    id: int
+    exercise: str
+    weight: float
+    reps: int
+
+    class Config:
+        from_attributes = True
+
+@app.get("/sets", response_model=list[WorkoutSetResponse])
 def get_sets(db: Session = Depends(get_db)):
     return db.query(WorkoutSetModel).all()

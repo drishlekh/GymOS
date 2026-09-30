@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import WorkoutSet as WorkoutSetModel
 
+from datetime import date
+
 app = FastAPI()
 
 
@@ -22,6 +24,7 @@ def hello():
 
 
 class WorkoutSet(BaseModel):
+    workout_date: date
     exercise: str
     weight: float
     reps: int
@@ -33,9 +36,10 @@ def create_set(
     db: Session = Depends(get_db)
 ):
     new_set = WorkoutSetModel(
-        exercise=workout_set.exercise,
-        weight=workout_set.weight,
-        reps=workout_set.reps
+    workout_date=workout_set.workout_date,
+    exercise=workout_set.exercise,
+    weight=workout_set.weight,
+    reps=workout_set.reps
     )
 
     db.add(new_set)
@@ -50,6 +54,7 @@ def create_set(
 
 class WorkoutSetResponse(BaseModel):
     id: int
+    workout_date: date
     exercise: str
     weight: float
     reps: int

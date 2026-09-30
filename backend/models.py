@@ -15,4 +15,5 @@ class WorkoutSet(Base):
     weight: Mapped[float] = mapped_column(Numeric(6, 2), nullable=False)
     reps: Mapped[int] = mapped_column(Integer, nullable=False)
     workout_date: Mapped[date] = mapped_column(Date, nullable=False)
+    set_number: Mapped[int] = mapped_column(Integer, nullable=False)
     

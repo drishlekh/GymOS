@@ -26,6 +26,7 @@ def hello():
 class WorkoutSet(BaseModel):
     workout_date: date
     exercise: str
+    set_number: int
     weight: float
     reps: int
 
@@ -38,9 +39,10 @@ def create_set(
     new_set = WorkoutSetModel(
     workout_date=workout_set.workout_date,
     exercise=workout_set.exercise,
+    set_number=workout_set.set_number,
     weight=workout_set.weight,
     reps=workout_set.reps
-    )
+)
 
     db.add(new_set)
     db.commit()
@@ -56,6 +58,7 @@ class WorkoutSetResponse(BaseModel):
     id: int
     workout_date: date
     exercise: str
+    set_number: int
     weight: float
     reps: int
 

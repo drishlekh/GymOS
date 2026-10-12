@@ -17,3 +17,4 @@ class WorkoutSet(Base):
     workout_date: Mapped[date] = mapped_column(Date, nullable=False)
     set_number: Mapped[int] = mapped_column(Integer, nullable=False)
     rir: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    notes: Mapped[str | None] = mapped_column(String, nullable=True)

@@ -30,7 +30,7 @@ class WorkoutSet(BaseModel):
     weight: float
     reps: int
     rir: int | None = None
-
+    notes: str | None = None
 
 @app.post("/sets")
 def create_set(
@@ -43,7 +43,8 @@ def create_set(
     set_number=workout_set.set_number,
     weight=workout_set.weight,
     reps=workout_set.reps,
-    rir=workout_set.rir
+    rir=workout_set.rir,
+    notes=workout_set.notes
 )
 
     db.add(new_set)
@@ -64,6 +65,7 @@ class WorkoutSetResponse(BaseModel):
     weight: float
     reps: int
     rir: int | None
+    notes: str | None
     class Config:
         from_attributes = True
 
